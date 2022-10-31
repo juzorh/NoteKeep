@@ -1,11 +1,11 @@
 Practice app to store my Pluralsight course.
 
 ## TODOS
-- Custom views (Compound components and Extending views) To
-	add color patch to notes - [x]
+- [x] Custom views (Compound components and Extending views) To
+	add color patch to notes
 - [x] RecyclerView
-- Navigation Drawer [x]
-- Create custom view from scratch
+- [x] Navigation Drawer
+- [x] Create custom view from scratch
 - Save notes using ROOM architecture
 - implement ViewModels
 - Add automatic code testing
