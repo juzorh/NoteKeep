@@ -6,7 +6,7 @@ Practice app to store my Pluralsight course.
 - [x] RecyclerView
 - [x] Navigation Drawer
 - [x] Create custom view from scratch
-- Save notes using ROOM architecture
+- [] Save notes using ROOM architecture
 - implement ViewModels
 - Add automatic code testing
 - Improve UI
