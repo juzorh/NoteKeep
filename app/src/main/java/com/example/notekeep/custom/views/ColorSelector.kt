@@ -16,7 +16,24 @@ import com.example.notekeep.databinding.ColorSelectorBinding
  * Java has no concept of default parameters in classes or functions.
  * @JvmOverloads tells the compiler to generate a constructor for
  * each parameter in our primary constructor. In this case, it will
- * generate four different constructors in the Java bytecode
+ * generate four different constructors in the Java bytecode.
+ */
+
+/**
+ * @attributeSet: Contains any custom attributes defined for a given
+ * instance of the view. The attribute values can then be pulled out
+ * of the object and applied to the view.
+ *
+ * Steps for defining custom attributes:
+ * 1. Define the view's custom attr. in a <declare-styleable> resource
+ *      element in res/values/attr.xml.
+ * 2. Specify values for the attributes in the custom view's XML layout.
+ * 3. Retrieve attr. values at runtime in the custom view
+ *      class. defined in the constant [typedArray] below.
+ * 4. Apply the retrieved attr values to the layout where the
+ *      custom view is implemented.
+ *      in this case, the fragment_first.xml using
+ *      "app:colors="@array/note_color_array".
  */
 class ColorSelector @JvmOverloads
     constructor(
@@ -30,7 +47,12 @@ class ColorSelector @JvmOverloads
      * Default list of colors
      */
     private var listOfColors = listOf(Color.BLUE, Color.RED, Color.GREEN)
+
+    /**
+     * TODO: Use layout binding to reduce the use of findViewById()
+     */
     //private val binding: ColorSelectorBinding
+
     /**
      * This index will keep track of which color is selected as
      * the user is interacting with this view
@@ -39,6 +61,27 @@ class ColorSelector @JvmOverloads
 
     init {
         orientation = LinearLayout.HORIZONTAL
+
+        /**
+         * Add custom color attributes
+         */
+        val typedArray = context.obtainStyledAttributes(
+            attributeSet, R.styleable.ColorSelector
+        )
+        listOfColors = typedArray.getTextArray(R.styleable.ColorSelector_colors)
+            .map {
+                /**
+                 * Converts the array of HEX String colors defined in
+                 * res/colors.xml to Integers
+                 */
+                Color.parseColor(it.toString())
+            }
+
+        /**
+         * TypedArray are a shared resource and must be recycled after
+         * each use to free up resources and memory.
+         */
+        typedArray.recycle()
 
         /**
          * Inflate the color_selector.xml into the parent

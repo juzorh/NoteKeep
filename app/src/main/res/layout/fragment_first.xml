@@ -60,6 +60,7 @@
 
     <com.example.notekeep.custom.views.ColorSelector
         android:id="@+id/colorSelector"
+        app:colors="@array/note_color_array"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

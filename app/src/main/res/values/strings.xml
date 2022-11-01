@@ -34,4 +34,17 @@
     <string name="left_arrow">Left Arrow</string>
     <string name="right_arrow">Right Arrow</string>
     <string name="note_color">Note Color</string>
+
+    <!--
+        Colors referenced by res/values/attr.xml and used by the
+        custom CustomSelector view
+    -->
+    <string-array name="note_color_array">
+        <item>#E57373</item>
+        <item>#BA68C8</item>
+        <item>#81C784</item>
+        <item>#FFF176</item>
+        <item>#D7F44336</item>
+        <item>#90A4AE</item>
+    </string-array>
 </resources>
