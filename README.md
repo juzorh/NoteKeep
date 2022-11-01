@@ -18,5 +18,5 @@ Practice app to store my Pluralsight courses.
 	https://user-images.githubusercontent.com/49317280/199317541-bf460fae-af70-4055-a332-ece4e2018861.mp4
 
 - ColorPicker.kt is an Extended view class which inherits from the SeekBar class
-	in progress.
+	. **in progress**.
 
