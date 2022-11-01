@@ -1,4 +1,4 @@
-Practice app to store my Pluralsight courses.
+App to store my Programming course notes
 
 ## TODOS
 - [x] Custom views (Compound components and Extending views) To
