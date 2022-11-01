@@ -19,11 +19,12 @@ Practice app to store my Pluralsight courses.
 ```
 <com.example.notekeep.custom.views.ColorSelector
 	android:id="@+id/colorSelector"
-        app:colors="@array/note_color_array" <!-- `#E57373` `#BA68C8` `#81C784` `#FFF176` `#D7F44336` `#90A4AE`-->
+        app:colors="@array/note_color_array"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 />
 ```
+`#E57373` `#BA68C8` `#81C784` `#FFF176` `#D7F44336` `#90A4AE`
 	https://user-images.githubusercontent.com/49317280/199317541-bf460fae-af70-4055-a332-ece4e2018861.mp4
 
 
