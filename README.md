@@ -15,6 +15,7 @@ Practice app to store my Pluralsight courses.
 ## Custom views
 - ColorSelector.kt is a compound view class of the ImageView and View
 	types which extends the LinearLayout class.
+
 **XML**
 ```
 <com.example.notekeep.custom.views.ColorSelector
