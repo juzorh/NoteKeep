@@ -78,21 +78,9 @@ class FirstFragment : Fragment() {
             notePosition = DataManager.notes.lastIndex
         }
 
-        binding.colorSelector.setColorSelectListener(
-            object: ColorSelector.ColorSelectListener{
-
-                override fun onColorSelected(color: Int) {
-                    /**
-                     * Sets [noteColor] to the color received from the
-                     * custom compound component of id = "colorSelector"
-                     */
-                    noteColor = color
-                }
-
-            })
-
-        PowerManager.ACQUIRE_CAUSES_WAKEUP
-
+        binding.colorSelector.setListener { color ->
+            noteColor = color
+        }
     }
 
     /**
@@ -123,7 +111,7 @@ class FirstFragment : Fragment() {
          **/
         binding.noteTitle.setText(note.title)
         binding.noteDescription.setText(note.description)
-        binding.colorSelector.setSelectedColor(note.color)
+        binding.colorSelector.selectedColorValue = note.color
 
         noteColor = note.color
 

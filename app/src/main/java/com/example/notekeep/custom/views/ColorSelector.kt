@@ -49,7 +49,7 @@ class ColorSelector @JvmOverloads
     private var listOfColors = listOf(Color.BLUE, Color.RED, Color.GREEN)
 
     /**
-     * TODO: Use layout binding to reduce the use of findViewById()
+     * TODO: Use layout binding to reduce the findViewById() call
      */
     //private val binding: ColorSelectorBinding
 
@@ -60,7 +60,7 @@ class ColorSelector @JvmOverloads
     private var selectedColorIndex = 0
 
     init {
-        orientation = LinearLayout.HORIZONTAL
+        orientation = HORIZONTAL
 
         /**
          * Add custom color attributes
@@ -124,23 +124,44 @@ class ColorSelector @JvmOverloads
     }
 
     /**
-     * Interface listeners to be implemented by an activity or
+     * Used to set the note's color to the color selector
+     * compound view
+     */
+    var selectedColorValue: Int = android.R.color.transparent
+        set(value){
+            var index = listOfColors.indexOf(value)
+            if (index == -1) {
+                findViewById<CheckBox>(R.id.colorEnabled).isChecked = false
+                index = 0
+            } else {
+                findViewById<CheckBox>(R.id.colorEnabled).isChecked = true
+            }
+            selectedColorIndex = index
+
+            findViewById<View>(R.id.selectedColor)
+                .setBackgroundColor(listOfColors[selectedColorIndex])
+        }
+
+    /**
+     * lambda listeners to be implemented by an activity or
      * fragment to communicate events between the custom view
      * and the activities or fragments so that the user can
      * save the selected color.
      */
-    private var colorSelectListener: ColorSelectListener? = null
-    interface ColorSelectListener{
-        fun onColorSelected(color: Int)
-    }
+    private var colorSelectListener: ((Int) -> Unit)? = null /** Can be made to accept an array of listener functions */
 
+    /**
+     * accepts a function that receives the selected color (INT) as
+     * a parameter
+     */
+    fun setListener(color: (Int) -> Unit) {
+        this.colorSelectListener = color
+    }
     /**
      * The activities/fragments can call this method to be notified
      * of color changes
      */
-    fun setColorSelectListener(listener: ColorSelectListener){
-        this.colorSelectListener = listener
-    }
+
 
     /**
      * This method is used to communicate the chosen color to
@@ -155,7 +176,9 @@ class ColorSelector @JvmOverloads
             Color.TRANSPARENT // No color selected
         }
 
-        this.colorSelectListener?.onColorSelected(color)
+        this.colorSelectListener?.let { function ->
+            function(color)
+        }
     }
 
     /**
@@ -188,23 +211,5 @@ class ColorSelector @JvmOverloads
             .setBackgroundColor(listOfColors[selectedColorIndex])
 
         broadcastColor()
-    }
-
-    /**
-     * Used to set the note's color to the color selector
-     * compound view
-     */
-    fun setSelectedColor(color: Int){
-        var index = listOfColors.indexOf(color)
-        if (index == -1) {
-            findViewById<CheckBox>(R.id.colorEnabled).isChecked = false
-            index = 0
-        } else {
-            findViewById<CheckBox>(R.id.colorEnabled).isChecked = true
-        }
-        selectedColorIndex = index
-
-        findViewById<View>(R.id.selectedColor)
-            .setBackgroundColor(listOfColors[selectedColorIndex])
     }
 }
